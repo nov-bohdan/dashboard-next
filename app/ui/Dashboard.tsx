@@ -18,15 +18,17 @@ export default function Dashboard({
   };
   return (
     <>
-      {state.message && (
-        <p className="text-green-400 font-bold bg-green-900 p-2 rounded-lg shadow-md mb-4">
-          {state.message}
-        </p>
-      )}
+      <div className="flex justify-between mb-4">
+        {state.message && (
+          <p className="text-green-400 font-bold bg-green-900 p-2 rounded-lg shadow-md grow max-w-96 self-center">
+            {state.message}
+          </p>
+        )}
+        <ModalWrapper setState={handleSetState} />
+      </div>
       <Suspense fallback={<Spinner />}>
         <TaskList responsePromise={responsePromise} />
       </Suspense>
-      <ModalWrapper setState={handleSetState} />
     </>
   );
 }

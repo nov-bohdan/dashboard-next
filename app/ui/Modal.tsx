@@ -39,7 +39,7 @@ export default function Modal({
 
   return (
     <div
-      className="w-full h-screen bg-gray-800 absolute top-0 left-0 bg-opacity-75 flex justify-center items-center"
+      className="w-full h-screen bg-gray-800 absolute top-0 left-0 bg-opacity-75 flex justify-center items-center z-50"
       onClick={handleOutsideClick}
     >
       <div className="bg-gray-900 p-20 rounded-xl relative">

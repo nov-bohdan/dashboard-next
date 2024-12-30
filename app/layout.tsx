@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/app/ui/global.css";
 import { Roboto } from "next/font/google"; // Add Roboto font
+import Header from "@/app/ui/Header";
 
 const roboto = Roboto({
   // Initialize Roboto font
@@ -21,7 +22,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} antialiased p-20 relative`}>
+      <body className={`${roboto.variable} antialiased px-20 relative`}>
+        <Header />
         {children}
       </body>
     </html>
