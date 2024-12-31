@@ -24,7 +24,7 @@ export default async function RootLayout({
   const user = await userData.getUser();
   return (
     <html lang="en">
-      <body className={`${roboto.variable} antialiased px-20 relative`}>
+      <body className={`${roboto.variable} antialiased relative`}>
         {user?.error && <p className="text-red-500">Error: {user.error}</p>}
         {user && <Header firstName={user.settings?.first_name} />}
         {children}

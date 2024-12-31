@@ -8,11 +8,11 @@ export default function Header({
   firstName: string | undefined;
 }) {
   return (
-    <header className="bg-gradient-to-r from-gray-700 via-gray-900 to-black text-white p-6 rounded-lg shadow-xl flex flex-col md:flex-row justify-between items-center mb-5 rounded-t-none">
+    <header className="bg-gradient-to-r from-gray-700 via-gray-900 to-black text-white p-3 md:p-6 md:rounded-lg shadow-xl flex flex-col md:flex-row justify-between items-center mb-5 rounded-t-none">
       <h1 className="text-3xl font-bold mb-4 md:mb-0">Dashboard</h1>
-      <nav className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+      <nav className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
         {firstName && <p className="font-bold">Hello, {firstName}</p>}
-        <ul className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+        <ul className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
           <li>
             <Link
               href="/dashboard"

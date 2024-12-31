@@ -17,8 +17,8 @@ export default function Dashboard({
     setState(newState);
   };
   return (
-    <>
-      <div className="flex justify-between mb-4">
+    <div className="px-4">
+      <div className="flex justify-between mb-4 ">
         {state.message && (
           <p className="text-green-400 font-bold bg-green-900 p-3 rounded-lg shadow-xl grow max-w-96 self-center">
             {state.message}
@@ -29,6 +29,6 @@ export default function Dashboard({
       <Suspense fallback={<Spinner />}>
         <TaskList responsePromise={responsePromise} />
       </Suspense>
-    </>
+    </div>
   );
 }
