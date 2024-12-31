@@ -29,15 +29,15 @@ export default function Task({ task }: { task: TaskType }) {
   };
 
   return (
-    <div className="relative p-5 bg-gradient-to-r from-gray-700 via-gray-900 to-black text-white rounded-lg shadow-md flex flex-col transition-transform transform hover:scale-105">
+    <div className="relative p-6 bg-gradient-to-r from-gray-700 via-gray-900 to-black text-white rounded-xl shadow-xl flex flex-col transition-transform transform hover:scale-105">
       {(pending || updatePending || updateTitlePending) && (
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center rounded-lg">
+        <div className="absolute inset-0 bg-black bg-opacity-70 flex justify-center items-center rounded-xl">
           <Spinner />
         </div>
       )}
       {isUpdatingTitle ? (
         <form
-          className="flex mb-2"
+          className="flex mb-3"
           action={updateTitleAction}
           onSubmit={handleSubmit}
         >
@@ -45,17 +45,17 @@ export default function Task({ task }: { task: TaskType }) {
             defaultValue={task.title}
             type="text"
             name="title"
-            className="bg-transparent text-lg font-bold w-full border-2 border-orange-200 outline-none mr-3"
+            className="bg-transparent text-lg font-bold w-full border-2 border-orange-400 outline-none mr-3"
           ></input>
           <button className="text-4xl" type="submit">
             💾
           </button>
         </form>
       ) : (
-        <h2 className="text-2xl font-bold mb-2">
+        <h2 className="text-2xl font-bold mb-3">
           {task.title}{" "}
           <span
-            className="text-yellow-600 cursor-pointer"
+            className="text-yellow-400 cursor-pointer"
             onClick={() => setIsUpdatingTitle(!isUpdatingTitle)}
           >
             ✎
@@ -71,7 +71,7 @@ export default function Task({ task }: { task: TaskType }) {
         )}
       </p>
       <button
-        className="mt-2 px-0 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm mb-5"
+        className="mt-3 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm mb-5"
         onClick={() =>
           startTransition(() =>
             updateAction({ id: task.id!, is_completed: !task.is_completed })

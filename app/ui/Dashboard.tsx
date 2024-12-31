@@ -20,7 +20,7 @@ export default function Dashboard({
     <>
       <div className="flex justify-between mb-4">
         {state.message && (
-          <p className="text-green-400 font-bold bg-green-900 p-2 rounded-lg shadow-md grow max-w-96 self-center">
+          <p className="text-green-400 font-bold bg-green-900 p-3 rounded-lg shadow-xl grow max-w-96 self-center">
             {state.message}
           </p>
         )}

@@ -42,10 +42,10 @@ export default function Modal({
       className="w-full h-screen bg-gray-800 absolute top-0 left-0 bg-opacity-75 flex justify-center items-center z-50"
       onClick={handleOutsideClick}
     >
-      <div className="bg-gray-900 p-20 rounded-xl relative">
+      <div className="bg-gray-900 p-20 rounded-xl relative shadow-xl">
         <p
           onClick={onClose}
-          className="text-4xl cursor-pointer absolute top-5 right-10 font-bold text-white"
+          className="text-4xl cursor-pointer absolute top-5 right-10 font-bold text-white hover:text-gray-400 transition-colors"
         >
           X
         </p>

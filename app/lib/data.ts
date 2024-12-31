@@ -1,6 +1,10 @@
 import dotenv from "dotenv";
 import { createClient } from "@supabase/supabase-js";
-import { DbDeleteResponse, DbResponse, TaskType } from "./types";
+import {
+  auth,
+  createClient as createSupabaseClient,
+} from "@/utils/supabase/server";
+import { DbDeleteResponse, DbResponse, TaskType, UserSettings } from "./types";
 dotenv.config();
 
 // function sleep(ms: number) {
@@ -18,20 +22,20 @@ if (!key) throw new Error("Invalid supabase KEY");
 const supabase = createClient(url, key);
 
 export const db = {
-  async getAllTasks() {
-    // await sleep(1000);
+  async getAllTasks(user_id: string) {
     const response: DbResponse<TaskType> = await supabase
       .from("tasks")
       .select()
+      .filter("user_id", "eq", user_id)
       .order("id", { ascending: false });
 
     return response;
   },
 
-  async newTask(task: TaskType) {
+  async newTask(task: TaskType, user_id: string) {
     const response: DbResponse<TaskType> = await supabase
       .from("tasks")
-      .insert({ title: task.title })
+      .insert({ title: task.title, user_id })
       .select();
     return response;
   },
@@ -60,5 +64,50 @@ export const db = {
       .eq("id", id)
       .select();
     return response;
+  },
+
+  async createNewUserSettingsRow(
+    user_id: string | undefined,
+    first_name: string
+  ) {
+    const response: DbResponse<UserSettings> = await supabase
+      .from("user_settings")
+      .insert({
+        user_id,
+        first_name,
+      });
+    return response;
+  },
+
+  async getUserSettings(user_id: string) {
+    const response: DbResponse<UserSettings> = await supabase
+      .from("user_settings")
+      .select()
+      .eq("user_id", user_id);
+    return response;
+  },
+
+  async updateUserFirstName(user_id: string, first_name: string) {
+    const response: DbResponse<UserSettings> = await supabase
+      .from("user_settings")
+      .update({ first_name: first_name })
+      .eq("user_id", user_id)
+      .select();
+    return response;
+  },
+};
+
+export const userData = {
+  async getUser() {
+    const supabase = await createSupabaseClient();
+    const { data, error } = await auth.getUser(supabase);
+    if (error) return;
+    if (!data.user) return { error: "Invalid data" };
+    const response = await db.getUserSettings(data.user.id);
+    if (response.error) return { error: response.error.message };
+    if (!response.data) return { error: "Unknown error" };
+    if (response.data.length === 0) return { error: "Settings not found" };
+    const settings = response.data[0];
+    return { data: data.user, settings };
   },
 };
