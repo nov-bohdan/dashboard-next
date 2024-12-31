@@ -9,7 +9,7 @@ export default function Profile({
 }: {
   userSettings: UserSettings;
 }) {
-  const [state, action, pending] = useActionState(updateUserName, undefined);
+  const [state, action] = useActionState(updateUserName, undefined);
   return (
     <div className="p-6 bg-gradient-to-r from-gray-700 via-gray-900 to-black text-white rounded-xl shadow-xl flex flex-col">
       <h2 className="text-3xl font-bold mb-4">Profile</h2>

@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React from "react";
 import Logout from "./Logout";
 import Link from "next/link";
 

@@ -23,23 +23,19 @@ export async function signup(
   if (error) return { error: error.message };
 
   const user_id = data?.user?.id;
-  const user_settings = await db.createNewUserSettingsRow(user_id, firstname);
+  await db.createNewUserSettingsRow(user_id, firstname);
 
   redirect("/dashboard");
 }
 
 export async function login(prevState: unknown, formData: FormData) {
   const supabase = await createClient();
-  // const { data: user } = await auth.getUser(supabase);
-
-  // if (user?.user) redirect("/dashboard");
-
   const email = formData.get("email")?.toString();
   const password = formData.get("password")?.toString();
 
   if (!email || !password) return { error: "Empty email or password" };
 
-  const { data, error } = await auth.login(email, password, supabase);
+  const { error } = await auth.login(email, password, supabase);
 
   if (error) return { error: error.message };
 

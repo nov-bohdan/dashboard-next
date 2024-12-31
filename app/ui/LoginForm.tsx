@@ -5,14 +5,8 @@ import { login, signup } from "../lib/authActions";
 import Link from "next/link";
 
 export default function LoginForm({ type }: { type: "login" | "signup" }) {
-  const [loginState, loginAction, loginPending] = useActionState(
-    login,
-    undefined
-  );
-  const [signupState, signupAction, signupPending] = useActionState(
-    signup,
-    undefined
-  );
+  const [loginState, loginAction] = useActionState(login, undefined);
+  const [signupState, signupAction] = useActionState(signup, undefined);
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded shadow-md">
